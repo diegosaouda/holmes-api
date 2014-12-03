@@ -7,6 +7,9 @@ unit:
 coverage-html: unit
 	@coverage html -d cover
 
+focus:
+	@coverage run --branch `which nosetests` -vv --with-yanc --logging-level=WARNING --with-focus -i --processes=4 -s tests/
+
 integration: kill_run run_daemon
 	@`which nosetests` -vv --with-yanc -s tests/integration/;EXIT_CODE=$$?;$(MAKE) kill_run;exit $(EXIT_CODE)
 
